@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/elzatahmed/prj/Github/Compressing_Huffman",
+                "/usr/local/include",
+                "/usr/lib/gcc/x86_64-linux-gnu/4.4.7/include",
+                "/usr/lib/gcc/x86_64-linux-gnu/4.4.7/include-fixed",
+                "/usr/lib/gcc/x86_64-linux-gnu",
+                "/usr/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c99",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
