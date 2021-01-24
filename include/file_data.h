@@ -1,3 +1,6 @@
+/**
+ * Database
+ */
 
 char* file_path;
 char* file_name;

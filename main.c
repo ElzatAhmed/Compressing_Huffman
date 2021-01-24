@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "include/HuffmanTree.h"
+#include "include/encode.h"
 
 void read_data();
 
@@ -9,6 +9,8 @@ int main(int argc, char* argv[])
 		file_path = argv[0];
 		read_data();
 		build_HuffmanTree();
+		encode(final_root, code, 0);
+		display();
 	}
 
 	return (0);

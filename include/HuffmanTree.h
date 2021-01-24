@@ -1,8 +1,21 @@
+/**
+ * Functions for building Huffman tree :
+ *      1) init_forest: define a tree node for each different character 
+ *                   in the file,and record its frequency.
+ *      2) build_HuffmanTree: the function for building Huffman optimized
+ *                   binary tree.
+ */
+
 #include "tree.h"
 #include "file_data.h"
 #include <stdlib.h>
 
 struct tree_node* final_root;
+
+int isLeaf(struct tree_node* t){
+    if(t->left_child == NULL && t->right_child == NULL) return 1;
+    return 0;
+}
 
 void init_forest(){
     int i; Forest.tree_count = 0;
@@ -28,8 +41,8 @@ void build_HuffmanTree(){
         t->left_child = t1;
         t->right_child = t2;
         t->type = ROOT;
-        t1->type = LEAF;
-        t2->type = LEAF;
+        if(isLeaf(t1)) t1->type = LEAF;
+        if(isLeaf(t2)) t2->type = LEAF;
         Insert2Forest(t);
     }
     final_root = Forest.trees[0];

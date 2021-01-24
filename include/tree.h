@@ -35,6 +35,7 @@ void Insert2Forest(struct tree_node* t){
 struct tree_node* pop(){
     struct tree_node* t =  Forest.trees[Forest.tree_count - 1];
     int i;
-    for(i = 1; i < Forest.tree_count; i++) Forest.trees[i - 1] = Forest.trees[i];
+    for(i = Forest.tree_count; i >= 0; i--) Forest.trees[i + 1] = Forest.trees[i];
+    Forest.tree_count--;
     return t;
 }
