@@ -10,7 +10,6 @@ int main(int argc, char* argv[])
 		read_data();
 		build_HuffmanTree();
 		encode(final_root, code, 0);
-		display();
 	}
 
 	return (0);

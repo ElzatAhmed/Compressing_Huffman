@@ -27,15 +27,15 @@ struct{
 
 void Insert2Forest(struct tree_node* t){
     int i;
-    for(i = Forest.tree_count - 1; i >= 0 && t->frequency > Forest.trees[i]->frequency; i--) 
+    for(i = Forest.tree_count - 1; i >= 0 && t->frequency < Forest.trees[i]->frequency; i--) 
         Forest.trees[i + 1] = Forest.trees[i];
     Forest.trees[i + 1] = t;
     Forest.tree_count++;
 }
 struct tree_node* pop(){
-    struct tree_node* t =  Forest.trees[Forest.tree_count - 1];
+    struct tree_node* t =  Forest.trees[0];
     int i;
-    for(i = Forest.tree_count; i >= 0; i--) Forest.trees[i + 1] = Forest.trees[i];
+    for(i = 0; i < Forest.tree_count; i++) Forest.trees[i] = Forest.trees[i + 1];
     Forest.tree_count--;
     return t;
 }
