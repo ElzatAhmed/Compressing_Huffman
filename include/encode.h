@@ -13,10 +13,8 @@ struct{
 
 char code[0xff];
 
-void code_assign(char* c, int n){
-    int i;
-    for(i = 0; i < n; i++) c[i] = code[i];
-}
+void code_assign(char* c, int n);
+char* find_code(char data);
 
 void encode(struct tree_node* t , char* code, int i){
     if(t == NULL) return;
@@ -31,4 +29,14 @@ void encode(struct tree_node* t , char* code, int i){
         code[i] = '1';   
         encode(t->right_child, code, i + 1);
     }      
+}
+void code_assign(char* c, int n){
+    int i;
+    for(i = 0; i < n; i++) c[i] = code[i];
+}
+char* find_code(char data){
+    int i;
+    for(i = 0; i < count && encode_map[i].data != data; i++);
+    if(i == count) return NULL;
+    return encode_map[i].code; 
 }

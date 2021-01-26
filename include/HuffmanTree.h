@@ -12,23 +12,9 @@
 
 struct tree_node* final_root;
 
-int isLeaf(struct tree_node* t){
-    if(t->left_child == NULL && t->right_child == NULL) return 1;
-    return 0;
-}
 
-void init_forest(){
-    int i; Forest.tree_count = 0;
-    for(i = 0; i < char_count; i++){
-        struct tree_node* t = (struct tree_node*)malloc(sizeof(struct tree_node));
-        t->data = frequency_map[i].data;
-        t->frequency = frequency_map[i].frequency;
-        t->left_child = NULL;
-        t->right_child = NULL;
-        t->type = NORMAL;
-        Insert2Forest(t);
-    }
-}
+int isLeaf(struct tree_node* t);
+void init_forest();
 
 void build_HuffmanTree(){
     init_forest();
@@ -46,4 +32,22 @@ void build_HuffmanTree(){
         Insert2Forest(t);
     }
     final_root = Forest.trees[0];
+}
+
+
+void init_forest(){
+    int i; Forest.tree_count = 0;
+    for(i = 0; i < char_count; i++){
+        struct tree_node* t = (struct tree_node*)malloc(sizeof(struct tree_node));
+        t->data = frequency_map[i].data;
+        t->frequency = frequency_map[i].frequency;
+        t->left_child = NULL;
+        t->right_child = NULL;
+        t->type = NORMAL;
+        Insert2Forest(t);
+    }
+}
+int isLeaf(struct tree_node* t){
+    if(t->left_child == NULL && t->right_child == NULL) return 1;
+    return 0;
 }

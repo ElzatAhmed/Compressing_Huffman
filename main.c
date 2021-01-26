@@ -6,7 +6,7 @@ void read_data();
 int main(int argc, char* argv[])
 {
 	if(argc == 1){
-		file_path = argv[0];
+		extract_fileName_filePath(argv[0]);
 		read_data();
 		build_HuffmanTree();
 		encode(final_root, code, 0);
@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 
 void read_data(){
 	FILE* given_file;
-	given_file = fopen(file_path, "r");
+	given_file = fopen(given_file_path, "r");
 
 	char c;
 	while(c != EOF){
