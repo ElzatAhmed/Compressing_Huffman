@@ -1,4 +1,3 @@
 make:
-	-gcc main.c -g -o bin/main
-run:
-	-./bin/main
+	-gcc compress.c -g -o bin/compress
+	-gcc decompress.c -g -o bin/decompress
