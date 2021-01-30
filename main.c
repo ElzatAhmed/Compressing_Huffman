@@ -1,18 +1,19 @@
 #include <stdio.h>
-#include "include/encode.h"
+#include "include/output.h"
 
 void read_data();
 
 int main(int argc, char* argv[])
 {
-	if(argc == 1){
-		extract_fileName_filePath(argv[0]);
+	if(argc == 2){
+		extract_fileName_filePath(argv[1]);
 		read_data();
 		build_HuffmanTree();
 		encode(final_root, code, 0);
+		output_compressed();
 	}
 
-	return (0);
+	return 0;
 }
 
 void read_data(){

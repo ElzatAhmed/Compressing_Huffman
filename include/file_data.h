@@ -2,6 +2,9 @@
  * Database
  */
 
+#include <string.h>
+#include <stdlib.h>
+
 char* file_path;
 char* file_name;
 
@@ -31,15 +34,22 @@ void extract_fileName_filePath(char *args){
 
     const char* suffix = ".compressed";
 
-    int i = 0, j;
-    while(args[i] != '\0') if(args[i] == '/') j = i;
+    int i = 0, len = strlen(args), j;
+    while(i != len){ 
+        if(args[i] == '/') j = i;
+        i++;
+    }
     int k, l;
+    file_path = (char*)malloc(j * sizeof(char));
     for(k = 0; k < j; k++) file_path[k] = args[k];
-    for(k = j + 1, l = j; k < i; k++, l++) file_name[l] = args[k];
+    file_name = (char*)malloc((i - j - 1) * sizeof(char));
+    for(k = j + 1, l = 0; k < i; k++, l++) file_name[l] = args[k];
 
     given_file_path = args;
+
+    compressed_file_path = (char*)malloc((i + 12) * sizeof(char));
     for(k = 0; k < j; k++) compressed_file_path[k] = file_path[k];
     compressed_file_path[j] = '/';
-    for(k = j + 1, l = 0; k < i; k++, l++) compressed_file_path[k] = file_name[k];
+    for(k = j + 1, l = 0; k < i; k++, l++) compressed_file_path[k] = file_name[l];
     for(k = i, l = 0; l < 12; k++, l++) compressed_file_path[k] = suffix[l];
 }
