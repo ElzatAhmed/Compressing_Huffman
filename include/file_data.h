@@ -4,6 +4,10 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+FILE* given_file;
+FILE* output_file;
 
 char* file_path;
 char* file_name;

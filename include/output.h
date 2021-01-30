@@ -3,9 +3,6 @@
 
 #define NULL_CHAR '\0'
 
-FILE* given_file;
-FILE* output_file;
-
 void preorder_output(struct tree_node* t);
 void inorder_output(struct tree_node* t);
 void data_output();
@@ -19,6 +16,7 @@ void output_compressed(){
 
     /*output compressing library: 
         preorder and inorder sequence of the Huffman tree*/
+    fputc(char_count, output_file);
     preorder_output(final_root);
     inorder_output(final_root);
     data_output();
