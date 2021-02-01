@@ -2,14 +2,8 @@
 *   encoding functions (using Huffman optimized binary tree)
 **/
 
-#include "HuffmanTree.h"
+#include "common/HuffmanTree.h"
 #include <stdlib.h>
-
-struct{
-    char data;
-    char code[0xff];
-    int code_len;
-}encode_map[256]; int count = 0;
 
 char code[0xff];
 

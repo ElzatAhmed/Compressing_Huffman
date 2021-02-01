@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
+                "${workspaceFolder}/include",
                 "/home/elzatahmed/prj/Github/Compressing_Huffman",
                 "/usr/local/include",
                 "/usr/lib/gcc/x86_64-linux-gnu/4.4.7/include",

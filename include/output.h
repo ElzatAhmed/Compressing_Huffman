@@ -1,13 +1,10 @@
 #include "encode.h"
+#include "decode.h"
+#include "common/func.h"
 #include <stdio.h>
 
-#define NULL_CHAR '\0'
-
-void preorder_output(struct tree_node* t);
-void inorder_output(struct tree_node* t);
 void data_output();
-int bin_string2int(char* s);
-int power_of_2(int i);
+void output_decompressed();
 
 void output_compressed(){
 
@@ -17,28 +14,15 @@ void output_compressed(){
     /*output compressing library: 
         preorder and inorder sequence of the Huffman tree*/
     fputc(char_count, output_file);
-    preorder_output(final_root);
-    inorder_output(final_root);
+    preorder_output(final_root, output_file);
+    inorder_output(final_root, output_file);
     data_output();
 
     fclose(given_file);
     fclose(output_file);
 }
 
-void preorder_output(struct tree_node* t){
-    if(t == NULL) return;
-    if(t->type == LEAF) fputc(t->data, output_file);
-    else fputc(NULL_CHAR, output_file);
-    preorder_output(t->left_child);
-    preorder_output(t->right_child);
-}
-void inorder_output(struct tree_node* t){
-    if(t == NULL) return;
-    inorder_output(t->left_child);
-    if(t->type == LEAF) fputc(t->data, output_file);
-    else fputc(NULL_CHAR, output_file);
-    inorder_output(t->right_child);
-}
+
 void data_output(){
     char output[8]; int i = 0;
     char c = fgetc(given_file);
@@ -57,23 +41,21 @@ void data_output(){
         c = fgetc(given_file);
     }
 }
-int bin_string2int(char* s){
-    if(strlen(s) == 8){
-        int i = 0, res = 0;
-        for(; i < 8; i++){
-            if(s[i] == '1') res += power_of_2(7 - i);
-        }
-        return res;
+
+void output_decompressed(){
+
+    FILE* temp_file;
+    char* temp_file_path = (char*)malloc((strlen(file_path) + 5) * sizeof(char));
+    temp_file = fopen(temp_file_path, "w");
+
+    char c;
+    while(c != EOF){
+        c = fgetc(given_file);
+        char* bin = int2bin_string((int)c);
+        fputs(bin, temp_file);
     }
-    return -1;
-}
-int power_of_2(int i){
-    if(i == 0) return 1;
-    else{
-        int res = 1;
-        int j = 0;
-        for(; j < i; j++) res *= 2;
-        return res;
-    }
-    return -1;
+
+    fclose(given_file);
+    fclose(temp_file);
+
 }

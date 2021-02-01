@@ -6,6 +6,7 @@ void read_data();
 int main(int argc, char* argv[])
 {
 	if(argc == 2){
+		status = COMPRESSING;
 		extract_fileName_filePath(argv[1]);
 		read_data();
 		build_HuffmanTree();

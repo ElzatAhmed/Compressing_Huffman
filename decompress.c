@@ -1,21 +1,23 @@
 #include <stdio.h>
-#include "include/file_data.h"
-#include "include/decode.h"
+#include "include/output.h"
 
 void read_data();
 
 int main(int argc, char* argv[]){
 
     if(argc == 2){
-        file_path = argv[1];
+        status = DECOMPRESSING;
+        extract_fileName_filePath(argv[1]);
         read_data();
+        decode();
+        output_decompressed();
     }
 
     return 0;
 }
 
 void read_data(){
-    given_file = fopen(file_path, "r");
+    given_file = fopen(given_file_path, "r");
 
     char_count = fgetc(given_file);
 
