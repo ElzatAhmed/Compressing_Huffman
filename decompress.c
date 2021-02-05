@@ -20,11 +20,5 @@ void read_data(){
     given_file = fopen(given_file_path, "r");
 
     char_count = fgetc(given_file);
-
-    preorder = (char*)malloc(char_count * sizeof(char));
-    inorder = (char*)malloc(char_count * sizeof(char));
-
-    int i;
-    for(i = 0; i < char_count; i++) preorder[i] = fgetc(given_file);
-    for(i = 0; i < char_count; i++) inorder[i] = fgetc(given_file);
+    
 }

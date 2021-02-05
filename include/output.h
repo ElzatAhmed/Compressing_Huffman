@@ -1,6 +1,7 @@
 #include "encode.h"
-#include "decode.h"
 #include "common/func.h"
+#include "decode.h"
+#include <sys/syscall.h>
 #include <stdio.h>
 
 void data_output();
@@ -14,8 +15,10 @@ void output_compressed(){
     /*output compressing library: 
         preorder and inorder sequence of the Huffman tree*/
     fputc(char_count, output_file);
-    preorder_output(final_root, output_file);
-    inorder_output(final_root, output_file);
+    tree_output(final_root, output_file);
+    fputc(TEOF, output_file);
+    // preorder_output(final_root, output_file);
+    // inorder_output(final_root, output_file);
     data_output();
 
     fclose(given_file);
@@ -42,10 +45,13 @@ void data_output(){
     }
 }
 
-void output_decompressed(){
-
-    FILE* temp_file;
-    char* temp_file_path = (char*)malloc((strlen(file_path) + 5) * sizeof(char));
+void output_temp_file(){
+    FILE* temp_file; const char* temp_file_name = "temp";
+    temp_file_path = (char*)malloc((strlen(file_path) + 5) * sizeof(char));
+    int i, j = strlen(file_path);
+    for(i = 0; i < j; i++) temp_file_path[i] = file_path[i];
+    temp_file_path[j] = '/';
+    for(i = j + 1; i < j + 5; i++) temp_file_path[i] = temp_file_name[i - j - 1];
     temp_file = fopen(temp_file_path, "w");
 
     char c;
@@ -54,8 +60,26 @@ void output_decompressed(){
         char* bin = int2bin_string((int)c);
         fputs(bin, temp_file);
     }
-
-    fclose(given_file);
     fclose(temp_file);
+    fclose(given_file);
+}
 
+void output_decompressed(){
+
+    output_temp_file();
+    FILE* temp_file = fopen(temp_file_path, "r");
+    output_file = fopen(decompressed_file_path, "w");
+    char code[0xff], c; int n = 0;
+    while(c != EOF){
+        c = fgetc(temp_file);
+        code[n++] = c;
+        char data = find_data(code, n);
+        if(data == -1) continue;
+        fputc(data, output_file);
+        n = 0;
+    }
+    
+    fclose(output_file);
+    fclose(temp_file);
+    remove("temp");
 }

@@ -20,6 +20,7 @@ char* file_name;    // only file name
 char* given_file_path;              // with file name
 char* compressed_file_path;         // compressed file path with compressed file name
 char* decompressed_file_path;       // decompressed file path with decompressed file name
+char* temp_file_path;
 
 int byte_count = 0;     // == file_size
 int char_count = 0;     // == number of different characters in the given file
@@ -36,10 +37,9 @@ struct{
     char data;
     char code[0xff];
     int code_len;
-}encode_map[256]; int count = 0;
+}encode_map[256]; int code_count = 0;
 
-char* preorder;
-char* inorder;
+char* order;
 
 void Insert2Map(char c){        // insert to frequency map
     int i;

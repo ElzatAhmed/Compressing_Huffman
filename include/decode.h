@@ -4,29 +4,26 @@
 struct tree_node* final_root;
 
 /*rebuilding Huffman optimized binary tree 
-        using the preorder and inorder sequence of the tree*/
-int find(char* a, int size, int value);
-struct tree_node* build_tree(char* preorder, char* inorder, int size);
+        using the sequence of the tree*/
+struct tree_node* build_tree(char c);
 void decode();
 
-struct tree_node* build_tree(char* preorder, char* inorder, int size){
-    if(size < 0) return NULL;
-    struct tree_node* root = (struct tree_node*)malloc(sizeof(struct tree_node));
-    root->data = preorder[0];
-    if(size == 0) return root;
-    int left_size = find(inorder, size, root->data);
-    /*incomplete*/
-}
-int find(char* a, int size, int value){
-    int i;
-    for(i = 0; i < size; i++){
-        if(a[i] == value) return i;
-    }
-    return -1;
+struct tree_node* build_tree(char c){
+    if(c == TEOF || c == NULL_CHAR) return NULL;
+    struct tree_node* t = (struct tree_node*)malloc(sizeof(struct tree_node));
+    t->data = c;
+    if(c == ROOT_CHAR) t->type = ROOT;
+    else t->type = LEAF;
+    char l = fgetc(given_file);
+    t->left_child = build_tree(l);
+    char r = fgetc(given_file);
+    t->right_child = build_tree(r);
+    return t;
 }
 
 void decode(){
-    final_root = build_tree(preorder, inorder, char_count);
+    char c = fgetc(given_file);
+    final_root = build_tree(c);
     int i = 0;
     encode(final_root, code, i);
 }
