@@ -24,6 +24,7 @@ struct tree_node* build_tree(char c){
 void decode(){
     char c = fgetc(given_file);
     final_root = build_tree(c);
+    c = fgetc(given_file);      // get TEOF
     int i = 0;
     encode(final_root, code, i);
 }

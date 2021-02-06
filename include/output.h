@@ -13,7 +13,7 @@ void output_compressed(){
     output_file = fopen(compressed_file_path, "w");
 
     /*output compressing library: 
-        preorder and inorder sequence of the Huffman tree*/
+        the sequence of the Huffman tree*/
     fputc(char_count, output_file);
     tree_output(final_root, output_file);
     fputc(TEOF, output_file);
