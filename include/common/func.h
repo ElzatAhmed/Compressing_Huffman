@@ -1,18 +1,16 @@
 #include <string.h>
 #include <stdio.h>
 
-#define NULL_CHAR 1
-#define ROOT_CHAR 2
+#define NULL_CHAR -1
+#define ROOT_CHAR -2
 #define TEOF 3
 
-int bin_string2int(char* s){
-    if(strlen(s) == 8){
-        int i = 0, res = 0;
-        for(; i < 8; i++){
-            if(s[i] == '1') res += power_of_2(7 - i);
-        }
-        return res;
+int bin_string2int(char* s, int n){
+    int i = 0, res = 0;
+    for(; i < n; i++){
+        if(s[i] == '1') res += power_of_2(n - 1 - i);
     }
+    return res;
     return -1;
 }
 int power_of_2(int i){

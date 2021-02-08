@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CLionExternalBuildManager">
+    <target id="39edb128-9c63-4cb3-b84d-6368d788a7f2" name="make_compress" defaultType="MAKE">
+      <configuration id="3eabcda4-dcf1-4c07-babb-06c52fdc705f" name="make_compress">
+        <build type="MAKE">
+          <make targetName="gcc compress.c -g -o bin/compress" />
+        </build>
+        <clean type="MAKE">
+          <make targetName="rm bin/compress" />
+        </clean>
+      </configuration>
+    </target>
+  </component>
+</project>

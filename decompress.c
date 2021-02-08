@@ -2,6 +2,7 @@
 #include "include/output.h"
 
 void read_data();
+int contain(int n);
 
 int main(int argc, char* argv[]){
 
@@ -21,4 +22,11 @@ void read_data(){
 
     char_count = fgetc(given_file);
     
+}
+
+int contain(int n){
+    int i;
+    for(i = 0; i < code_count && encode_map[i].data != n; i++);
+    if(i == code_count) return 0;
+    return 1;
 }

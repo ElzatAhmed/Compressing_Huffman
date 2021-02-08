@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MakefileBuildTargetsManager">
+    <user-build-targets>
+      <build-target name="gcc compress.c -g -o bin/compress">
+        <build-configurations>
+          <build-configuration>
+            <make-targets>
+              <make-target>gcc</make-target>
+              <make-target>compress.c</make-target>
+              <make-target>-g</make-target>
+              <make-target>-o</make-target>
+              <make-target>bin/compress</make-target>
+            </make-targets>
+          </build-configuration>
+        </build-configurations>
+      </build-target>
+      <build-target name="rm bin/compress">
+        <build-configurations>
+          <build-configuration>
+            <make-targets>
+              <make-target>rm</make-target>
+              <make-target>bin/compress</make-target>
+            </make-targets>
+          </build-configuration>
+        </build-configurations>
+      </build-target>
+    </user-build-targets>
+  </component>
+</project>

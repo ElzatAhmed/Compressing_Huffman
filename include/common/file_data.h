@@ -22,7 +22,7 @@ char* compressed_file_path;         // compressed file path with compressed file
 char* decompressed_file_path;       // decompressed file path with decompressed file name
 char* temp_file_path;
 
-int byte_count = 0;     // == file_size
+int bit_count = 0;     // == file_size
 int char_count = 0;     // == number of different characters in the given file
 
 const char* compressed_suffix = ".compressed";

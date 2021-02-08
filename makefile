@@ -1,3 +1,14 @@
+object := loop.c
+
 make:
-	-gcc compress.c -g -o bin/compress
-	-gcc decompress.c -g -o bin/decompress
+	-gcc compress.c -fno-stack-protector -g -o bin/compress
+	-gcc decompress.c -fno-stack-protector -g -o bin/decompress
+compress:
+	-./bin/compress testcases/${object}
+decompress:
+	-./bin/decompress testcases/${object}.compressed
+both:
+	-./bin/compress testcases/${object}
+	-./bin/decompress testcases/${object}.compressed
+clean:
+	-rm bin/compress bin/decompress

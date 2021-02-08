@@ -21,10 +21,10 @@ void read_data(){
 	FILE* given_file;
 	given_file = fopen(given_file_path, "r");
 
-	char c;
+	char c = fgetc(given_file);
 	while(c != EOF){
-		c = fgetc(given_file);
 		Insert2Map(c);
+		c = fgetc(given_file);
 	}
 
 	fclose(given_file);
